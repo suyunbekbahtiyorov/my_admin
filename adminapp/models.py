@@ -11,9 +11,6 @@ from django.db import models
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'adminapp_faculty'
     def __str__(self):
         return self.name
 
@@ -22,19 +19,12 @@ class Group(models.Model):
     name = models.CharField(max_length=100)
     faculty = models.ForeignKey(Faculty, models.DO_NOTHING, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'adminapp_group'
     def __str__(self):
         return self.name
 
 
 class Kafedra(models.Model):
     name = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'adminapp_kafedra'
 
     def __str__(self):
         return self.name
@@ -46,17 +36,11 @@ class Student(models.Model):
     age = models.IntegerField()
     group = models.ForeignKey(Group, models.DO_NOTHING, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'adminapp_student'
 
 
 class Subject(models.Model):
     name = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'adminapp_subject'
     def __str__(self):
         return self.name
 
@@ -68,8 +52,5 @@ class Teacher(models.Model):
     kafedra = models.ForeignKey(Kafedra, models.DO_NOTHING, blank=True, null=True)
     subject = models.ForeignKey(Subject, models.DO_NOTHING, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'adminapp_teacher'
     def __str__(self):
         return self.first_name+" "+self.last_name
